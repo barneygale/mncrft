@@ -2,16 +2,14 @@ import os.path
 
 import bitstring
 
-from quarry.types.buffer import Buffer1_13_2, Buffer1_14
-from quarry.types.chunk import PackedArray, BlockArray
-from quarry.types.registry import OpaqueRegistry, BitShiftRegistry
-from quarry.types.nbt import TagCompound
+from mncrft.chunk import BlockArray
+from mncrft.registry import OpaqueRegistry
+from mncrft.nbt import TagCompound
 
 TagCompound.preserve_order = True # for testing purposes.
 
 root_path = os.path.dirname(__file__)
 chunk_path = os.path.join(root_path, "chunk.bin")
-packet_path = os.path.join(root_path, "packet.bin")
 
 
 def test_wikivg_example():
@@ -26,57 +24,6 @@ def test_wikivg_example():
         1, 2, 2, 3, 4, 4, 5, 6, 6, 4, 8, 0, 7,
         4, 3, 13, 15, 16, 9, 14, 10, 12, 0, 2]
 
-
-# See https://github.com/barneygale/quarry/issues/66
-# See https://github.com/barneygale/quarry/issues/100
-def test_packet_pack_unpack():
-    bt = Buffer1_14
-
-    with open(packet_path, "rb") as f:
-        packet_data_before = f.read()
-
-    # Unpack
-    buff = bt(packet_data_before)
-    bitmask = buff.unpack_varint()
-    heightmap = buff.unpack_nbt()
-    biomes = [buff.unpack_varint() for _ in range(buff.unpack_varint())]
-    sections_length = buff.unpack_varint()
-    sections = buff.unpack_chunk(bitmask)
-    block_entities = [buff.unpack_nbt() for _ in range(buff.unpack_varint())]
-
-    # Basics
-    assert len(buff) == 0
-    assert bitmask == 0b11111
-
-    # Height data
-    motion_blocking = heightmap.body.value['MOTION_BLOCKING'].value
-    motion_blocking.value_width = 9
-    motion_blocking.length = 256
-    assert motion_blocking[0] == 68
-    assert motion_blocking[255] == 73
-
-    # Block data
-    blocks = sections[0][0]
-    assert blocks[::512] == [33, 33, 10, 10, 1, 1, 0, 2]
-
-    # Biomes
-    assert biomes[0] == 29
-
-    # Block entities
-    assert len(block_entities) == 0
-
-    sections_data_after = bt.pack_chunk(sections)
-
-    packet_data_after = \
-        bt.pack_chunk_bitmask(sections) + \
-        bt.pack_nbt(heightmap) + \
-        bt.pack_varint(len(biomes)) + \
-        b"".join(bt.pack_varint(biome) for biome in biomes) + \
-        bt.pack_varint(len(sections_data_after)) + \
-        sections_data_after + \
-        bt.pack_varint(len(block_entities)) + \
-        b"".join(bt.pack_nbt(tag) for tag in block_entities)
-    assert packet_data_before == packet_data_after
 
 def test_chunk_internals():
     blocks = BlockArray.empty(OpaqueRegistry(13))

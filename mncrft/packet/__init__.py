@@ -7,11 +7,11 @@ import re
 def _load():
     default_protocol_version = 0
     minecraft_versions = {}
-    packet_names = {}
-    packet_idents = {}
+    names = {}
+    idents = {}
     csv_paths = os.path.abspath(os.path.join(
         os.path.dirname(__file__),
-        "packets",
+        "data",
         "*.csv"))
     for csv_path in glob.glob(csv_paths):
         match = re.match('(\d{4})_(.+)\.csv', os.path.basename(csv_path))
@@ -21,7 +21,7 @@ def _load():
         protocol_version = int(match.group(1))
         minecraft_version = match.group(2)
 
-        packet_ident = None
+        ident = None
         last_section = None
         with open(csv_path) as csv_file:
             reader = csv.reader(csv_file)
@@ -32,12 +32,12 @@ def _load():
 
                 # Extract fields
                 protocol_mode = record[0]
-                packet_direction = record[1]
-                packet_name = record[2]
+                direction = record[1]
+                name = record[2]
 
-                section = (protocol_mode, packet_direction)
+                section = (protocol_mode, direction)
                 if section != last_section:
-                    packet_ident = 0
+                    ident = 0
                 last_section = section
 
                 # Update default protocol version
@@ -48,14 +48,14 @@ def _load():
                 minecraft_versions[protocol_version] = minecraft_version
 
                 # Update the packet dictionaries
-                key = [protocol_version, protocol_mode, packet_direction]
-                packet_names[tuple(key + [packet_ident])] = packet_name
-                packet_idents[tuple(key + [packet_name])] = packet_ident
+                key = [protocol_version, protocol_mode, direction]
+                names[tuple(key + [ident])] = name
+                idents[tuple(key + [name])] = ident
 
-                packet_ident += 1
+                ident += 1
 
     return (default_protocol_version, minecraft_versions,
-            packet_names, packet_idents)
+            names, idents)
 
 default_protocol_version, minecraft_versions, \
-packet_names, packet_idents = _load()
+names, idents = _load()

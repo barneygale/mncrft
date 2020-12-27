@@ -1,5 +1,5 @@
-from quarry.types.chunk import BlockArray
-from quarry.types.buffer.v1_13_2 import Buffer1_13_2
+from mncrft.chunk import BlockArray
+from mncrft.buffer.v1_13_2 import Buffer1_13_2
 
 poses = ('standing', 'fall_flying', 'sleeping', 'swimming', 'spin_attack',
          'sneaking', 'dying')
@@ -14,7 +14,7 @@ class Buffer1_14(Buffer1_13_2):
     def pack_chunk_section(cls, blocks, block_lights=None, sky_lights=None):
         """
         Packs a chunk section. The supplied argument should be an instance of
-        ``quarry.types.chunk.BlockArray``.
+        ``mncrft.chunk.BlockArray``.
         """
 
         out = cls.pack('HB', blocks.non_air, blocks.storage.value_width)

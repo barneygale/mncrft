@@ -1,5 +1,5 @@
-from quarry.types.buffer.v1_9 import Buffer1_9
-from quarry.types.registry import OpaqueRegistry
+from mncrft.buffer.v1_9 import Buffer1_9
+from mncrft.registry import OpaqueRegistry
 
 # Python 3 compat
 try:

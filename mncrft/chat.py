@@ -1,7 +1,7 @@
 import functools
 import re
 
-from quarry.types.buffer import Buffer
+from mncrft.buffer import Buffer
 
 try:
     basestring

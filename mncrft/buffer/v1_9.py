@@ -1,5 +1,5 @@
-from quarry.types.buffer.v1_7 import Buffer1_7
-from quarry.types.chunk import PackedArray, BlockArray
+from mncrft.buffer.v1_7 import Buffer1_7
+from mncrft.chunk import PackedArray, BlockArray
 
 
 # Python 3 compat
@@ -33,7 +33,7 @@ class Buffer1_9(Buffer1_7):
     def pack_chunk_section(cls, blocks, block_lights, sky_lights=None):
         """
         Packs a chunk section. The supplied arguments should be instances of
-        ``BlockArray`` and ``LightArray`` from ``quarry.types.chunk``.
+        ``BlockArray`` and ``LightArray`` from ``mncrft.chunk``.
         """
 
         out = cls.pack('B', blocks.storage.value_width)

@@ -272,7 +272,7 @@ class BlockArray(Sequence):
     def from_nbt(cls, section, registry, non_air=-1):
         """
         Creates a block array that uses the given NBT section tag as storage
-        for block data and the palette. Minecraft 1.13+ only.
+        for block data and the palette. Minecraft 1.16+ only.
         """
 
         nbt_palette = section.value['Palette']
@@ -451,7 +451,7 @@ class _NBTPaletteProxy(MutableSequence):
         del self.palette[idx]
 
     def __getitem__(self, idx):
-        from quarry.types import nbt
+        from mncrft import nbt
 
         block = self.registry.decode_block(self.palette[idx])
         entry = nbt.TagCompound({'Name': nbt.TagString(block['name'])})

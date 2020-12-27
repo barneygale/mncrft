@@ -1,10 +1,10 @@
 NBT
 ===
 
-.. module:: quarry.types.nbt
+.. module:: mncrft.nbt
 
-Quarry implements the Named Binary Tag (NBT) format. The following tag types
-are available from the :mod:`quarry.types.nbt` module:
+mncrft implements the Named Binary Tag (NBT) format. The following tag types
+are available from the :mod:`mncrft.nbt` module:
 
 .. list-table::
     :header-rows: 1
@@ -24,11 +24,11 @@ are available from the :mod:`quarry.types.nbt` module:
     - * ``TagDouble``
       * ``float``
     - * ``TagByteArray``
-      * :class:`~quarry.types.chunk.PackedArray` with 8-bit sectors
+      * :class:`~mncrft.chunk.PackedArray` with 8-bit sectors
     - * ``TagIntArray``
-      * :class:`~quarry.types.chunk.PackedArray` with 32-bit sectors
+      * :class:`~mncrft.chunk.PackedArray` with 32-bit sectors
     - * ``TagLongArray``
-      * :class:`~quarry.types.chunk.PackedArray` with 64-bit sectors
+      * :class:`~mncrft.chunk.PackedArray` with 64-bit sectors
     - * ``TagString``
       * ``str`` (py3) or ``unicode`` (py2)
     - * ``TagList``
@@ -61,7 +61,7 @@ All tag types have the following attributes and methods:
 .. classmethod:: Tag.from_buff(buff)
 
     Creates a tag object from data at the beginning of the supplied
-    :class:`~quarry.types.buffer.Buffer` object.
+    :class:`~mncrft.buffer.Buffer` object.
 
 .. method:: Tag.to_obj
 
@@ -77,14 +77,6 @@ All tag types have the following attributes and methods:
 
     The value of the tag.
 
-.. currentmodule:: quarry.types.buffer
-
-When working with NBT in relation to a :class:`~quarry.net.protocol.Protocol`,
-the :meth:`Buffer.unpack_nbt` and :meth:`Buffer.pack_nbt` methods may be
-helpful.
-
-
-.. currentmodule:: quarry.types.nbt
 
 Files
 -----
@@ -95,7 +87,7 @@ You can open an NBT file using the ``NBTFile`` class.
     :members:
     :undoc-members:
 
-You can open Minecraft 1.13+ world files (``.mca``) using the ``RegionFile``
+You can open Minecraft 1.16+ world files (``.mca``) using the ``RegionFile``
 class, which can also function as a context manager. See :doc:`chunks` for
 information on loading block and light data.
 

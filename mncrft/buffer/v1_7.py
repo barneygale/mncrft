@@ -4,9 +4,9 @@ import struct
 import sys
 import zlib
 
-from quarry.types.buffer import BufferUnderrun
-from quarry.types.uuid import UUID
-from quarry.types.registry import OpaqueRegistry
+from mncrft.buffer import BufferUnderrun
+from mncrft.uuid import UUID
+from mncrft.registry import OpaqueRegistry
 
 PY3 = sys.version_info > (3,)
 
@@ -303,7 +303,7 @@ class Buffer1_7(object):
         """
         Pack a Minecraft chat message.
         """
-        from quarry.types import chat
+        from mncrft import chat
         if not isinstance(message, chat.Message):
             message = chat.Message.from_string(message)
         return message.to_bytes()
@@ -312,7 +312,7 @@ class Buffer1_7(object):
         """
         Unpack a Minecraft chat message.
         """
-        from quarry.types import chat
+        from mncrft import chat
         return chat.Message.from_buff(self)
 
     # UUID --------------------------------------------------------------------
@@ -426,7 +426,7 @@ class Buffer1_7(object):
 
         if tag is None:
             # slower but more obvious:
-            #   from quarry.types import nbt
+            #   from mncrft import nbt
             #   tag = nbt.TagRoot({})
             return b"\x00"
 
@@ -437,7 +437,7 @@ class Buffer1_7(object):
         Unpacks NBT tag(s).
         """
 
-        from quarry.types import nbt
+        from mncrft import nbt
         return nbt.TagRoot.from_buff(self)
 
 

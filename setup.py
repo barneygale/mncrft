@@ -1,33 +1,23 @@
 from distutils.core import setup
 
 setup(
-    name='quarry',
-    version='1.6.2',
+    name='mncrft',
+    version='1.0',
     author='Barney Gale',
     author_email='barney@barneygale.co.uk',
-    url='https://github.com/barneygale/quarry',
+    url='https://github.com/barneygale/mncrft',
     license='MIT',
-    description='Minecraft protocol library',
+    description='Minecraft data types library',
     long_description=open('README.rst').read(),
-    install_requires=[
-        'bitstring >= 3.1.0',
-        'cached_property >= 1.2.0',
-        'twisted >= 13.0.0',
-        'cryptography >= 0.9',
-        'pyOpenSSL >= 0.15.1',
-        'service_identity >= 14.0.0',
-    ],
-    test_requires=[
-        'pytest'
-    ],
+    install_requires=['bitstring >= 3.1.0'],
+    test_requires=['pytest'],
     packages=[
-        "quarry",
-        "quarry.data",
-        "quarry.net",
-        "quarry.types",
-        "quarry.types.buffer",
+        "mncrft",
+        "mncrft.buffer",
+        "mncrft.data_pack",
+        "mncrft.packet",
     ],
-    package_data={'quarry': [
-        'data/packets/*.csv',
-        'data/data_packs/*.nbt']},
+    package_data={'mncrft': [
+        'packet/data/*.csv',
+        'data_pack/data/*.nbt']},
 )

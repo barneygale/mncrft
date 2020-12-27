@@ -6,10 +6,13 @@ Documentation
 .. toctree::
     :maxdepth: 2
 
-    networking/index
-    data_types/index
-    examples
-    changes
+    buffers
+    registry
+    chat
+    chunks
+    nbt
+    uuids
+
 
 Indices and tables
 ------------------

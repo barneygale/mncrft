@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# quarry documentation build configuration file, created by
+# mncrft documentation build configuration file, created by
 # sphinx-quickstart on Fri Aug 14 20:00:39 2015.
 #
 # This file is execfile()d with the current directory set to its
@@ -48,7 +48,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'quarry'
+project = u'mncrft'
 copyright = u'2020, Barney Gale'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -181,7 +181,7 @@ pygments_style = 'sphinx'
 #html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'quarrydoc'
+htmlhelp_basename = 'mncrftdoc'
 
 
 # -- Options for LaTeX output ---------------------------------------------
@@ -201,7 +201,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  ('index', 'quarry.tex', u'quarry Documentation',
+  ('index', 'mncrft.tex', u'mncrft Documentation',
    u'Barney Gale', 'manual'),
 ]
 
@@ -231,7 +231,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'quarry', u'quarry Documentation',
+    ('index', 'mncrft', u'mncrft Documentation',
      [u'Barney Gale'], 1)
 ]
 
@@ -245,8 +245,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'quarry', u'quarry Documentation',
-   u'Barney Gale', 'quarry', 'One line description of project.',
+  ('index', 'mncrft', u'mncrft Documentation',
+   u'Barney Gale', 'mncrft', 'One line description of project.',
    'Miscellaneous'),
 ]
 
@@ -266,45 +266,3 @@ if os.environ.get('READTHEDOCS', 'False') != 'True':
     import sphinx_rtd_theme
     html_theme = 'sphinx_rtd_theme'
     html_theme_path = [sphinx_rtd_theme.get_html_theme_path()]
-
-# Generate 'packet_names.rst'
-
-import textwrap
-from collections import defaultdict
-from quarry.data import packets
-
-def write_packet_names():
-    latest_protocol = packets.default_protocol_version
-    latest_minecraft = packets.minecraft_versions[latest_protocol]
-
-    text = textwrap.dedent("""
-        Packet Names
-        ============
-
-        See the `Minecraft Coalition Wiki`_ for a details on every packet.
-
-        .. _Minecraft Coalition Wiki: http://wiki.vg/Protocol
-        """)
-
-    title = "Minecraft %s" % latest_minecraft
-    text += "\n%s\n%s\n\n" % (title, "-"*len(title))
-
-    names = defaultdict(set)
-    for key, name in packets.packet_names.items():
-        protocol, _, direction, _ = key
-        if protocol == latest_protocol:
-            names[name].add(direction)
-
-    for name, directions in sorted(names.items()):
-        text += "- ``%s`` (%s)\n" % (name, ", ".join(directions))
-
-    path = os.path.join(
-        os.path.dirname(__file__),
-        "networking",
-        "packet_names.rst")
-
-    with open(path, "w") as fd:
-        fd.write(text)
-
-
-write_packet_names()

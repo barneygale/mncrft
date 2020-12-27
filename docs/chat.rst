@@ -1,7 +1,7 @@
 Chat Messages
 =============
 
-.. module:: quarry.types.chat
+.. module:: mncrft.chat
 
 Minecraft chat is implemented in the :class:`Message` class.
 

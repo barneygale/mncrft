@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import gzip
 import os.path
-from quarry.types.nbt import *
+from mncrft.nbt import *
 TagCompound.preserve_order = True # for testing purposes.
 
 

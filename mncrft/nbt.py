@@ -4,8 +4,8 @@ import gzip
 import time
 import zlib
 
-from quarry.types.buffer import Buffer
-from quarry.types.chunk import PackedArray
+from mncrft.buffer import Buffer
+from mncrft.chunk import PackedArray
 
 _kinds = {}
 _ids = {}

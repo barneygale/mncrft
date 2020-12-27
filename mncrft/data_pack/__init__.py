@@ -2,7 +2,7 @@ import glob
 import os.path
 import re
 
-from quarry.types.nbt import NBTFile, TagRoot
+from mncrft.nbt import NBTFile, TagRoot
 
 
 def _load():
@@ -10,7 +10,7 @@ def _load():
     dimension_types = {}
     nbt_paths = os.path.abspath(os.path.join(
         os.path.dirname(__file__),
-        "data_packs",
+        "data",
         "*.nbt"))
     for nbt_path in glob.glob(nbt_paths):
         match = re.match('(\d{4})_(.+)\.nbt', os.path.basename(nbt_path))

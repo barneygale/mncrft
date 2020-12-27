@@ -1,13 +1,10 @@
 Registry
 ========
 
-.. currentmodule:: quarry.types.buffer
+.. currentmodule:: mncrft.buffer
 
-Quarry can be told to encode/decode block, item and other information by
-setting the :attr:`~Buffer.registry` attribute on the in-use buffer. This can be
-set directly or by deriving a subclass and customizing
-:meth:`~quarry.net.client.ClientFactory.get_buff_type()`. The registry
-affects the following methods:
+mncrft can be told to encode/decode block, item and other information by
+setting the :attr:`~Buffer.registry` attribute on the in-use buffer.
 
 - :meth:`~Buffer.unpack_slot()` and :meth:`~Buffer.pack_slot()`
 - :meth:`~Buffer.unpack_block()` and :meth:`~Buffer.pack_block()`
@@ -18,7 +15,7 @@ affects the following methods:
 - :meth:`~Buffer.unpack_villager()` and :meth:`~Buffer.pack_villager()`
 - :meth:`~Buffer.unpack_particle()` and :meth:`~Buffer.pack_particle()`
 
-.. module:: quarry.types.registry
+.. module:: mncrft.registry
 
 All registry objects have the following methods:
 
@@ -28,7 +25,7 @@ All registry objects have the following methods:
 .. automethod:: Registry.decode_block
 .. automethod:: Registry.is_air_block
 
-Quarry supports the following registry types:
+mncrft supports the following registry types:
 
 .. autoclass:: OpaqueRegistry
 .. autoclass:: BitShiftRegistry

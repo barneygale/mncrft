@@ -2,10 +2,10 @@ from collections import OrderedDict
 
 import pytest
 
-from quarry.types.buffer import Buffer, BufferUnderrun
-from quarry.types.chat import Message
-from quarry.types.nbt import *
-from quarry.types.uuid import UUID
+from mncrft.buffer import Buffer, BufferUnderrun
+from mncrft.chat import Message
+from mncrft.nbt import *
+from mncrft.uuid import UUID
 
 TagCompound.preserve_order = True # for testing purposes.
 

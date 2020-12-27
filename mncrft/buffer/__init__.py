@@ -2,11 +2,11 @@ class BufferUnderrun(Exception):
     pass
 
 
-from quarry.types.buffer.v1_7 import Buffer1_7
-from quarry.types.buffer.v1_9 import Buffer1_9
-from quarry.types.buffer.v1_13 import Buffer1_13
-from quarry.types.buffer.v1_13_2 import Buffer1_13_2
-from quarry.types.buffer.v1_14 import Buffer1_14
+from mncrft.buffer.v1_7 import Buffer1_7
+from mncrft.buffer.v1_9 import Buffer1_9
+from mncrft.buffer.v1_13 import Buffer1_13
+from mncrft.buffer.v1_13_2 import Buffer1_13_2
+from mncrft.buffer.v1_14 import Buffer1_14
 
 
 # Versioned buffers used after handshaking

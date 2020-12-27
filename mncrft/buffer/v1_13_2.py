@@ -1,4 +1,4 @@
-from quarry.types.buffer.v1_13 import Buffer1_13
+from mncrft.buffer.v1_13 import Buffer1_13
 
 
 class Buffer1_13_2(Buffer1_13):

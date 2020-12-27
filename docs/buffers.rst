@@ -1,22 +1,18 @@
 Buffers
 =======
 
-.. module:: quarry.types.buffer
+.. module:: mncrft.buffer
 
-Quarry implements Minecraft's data types by way of the :class:`Buffer` class.
+mncrft implements Minecraft's data types by way of the :class:`Buffer` class.
 
-When quarry reads a packet, it stores its payload in a buffer object
-and passes the buffer to a packet handler. The packet handler then unpacks
-the payload, which usually made up of multiple fields of differing types. You
-can read from the front of the buffer via the :meth:`Buffer.read` method or any
-of the ``unpack_*()`` methods listed below
+You can read from the front of the buffer via the :meth:`Buffer.read` method or
+any of the ``unpack_*()`` methods listed below
 
 Buffers also provide a number of static methods that pack data into
 a byte string. These are named like ``pack_*()``.
 
 When *unpacking* data you work with a buffer *object*, whereas when packing
-data you work with a buffer *type*. A reference to the buffer type is available
-from :class:`~quarry.net.protocol.Protocol` objects as ``self.buff_type``.
+data you work with a buffer *type*.
 
 
 .. autoclass:: Buffer
@@ -30,10 +26,6 @@ from :class:`~quarry.net.protocol.Protocol` objects as ``self.buff_type``.
 
 Protocol Versions
 -----------------
-
-Some data types vary between Minecraft versions. Quarry automatically sets the
-``buff_type`` attribute of ``Protocol`` instance to an appropriate buffer
-class when the protocol version becomes known.
 
 Minecraft 1.7
 ~~~~~~~~~~~~~
